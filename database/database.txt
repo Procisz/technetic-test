@@ -27,8 +27,8 @@ CREATE TABLE invitations (
 
 # Create a test data in users table
 INSERT INTO users (created_on, birthday, user_name, email, password)
-VALUES (CURRENT_TIMESTAMP(), "1982-02-12", "test-user-name", "test@elek.com", "non-hashed password");
+VALUES (CURRENT_TIMESTAMP(), "1982-02-12", "test-user-name", "test@test.com", "non-hashed password");
 
 # Create a test data in invitations table
 INSERT INTO invitations (created_on, invited_by, email, invitation_accepted)
-VALUES (CURRENT_TIMESTAMP(), 1, "test2@elek2.com", true);
+VALUES (CURRENT_TIMESTAMP(), 1, "test2@test2.com", true);

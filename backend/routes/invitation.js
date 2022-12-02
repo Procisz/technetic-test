@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const pool = require('./../mariadb/mariadb-connection');
+const pool = require('../mariadb/mariadb-connection');
 
 /* GET users listing. */
 router.get("/", async (req, res) => {
