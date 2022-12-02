@@ -16,11 +16,9 @@ const pool = mariadb.createPool({
 router.get("/", async (req, res) => {
   conn = await pool.getConnection();
   const rows = await conn.query("SELECT * FROM users");
-  // console.log("rows", rows);
   const json = JSON.stringify(rows)
-  // console.log("json", json);
 
-  res.send(json);
+  res.send(rows);
 });
 
 module.exports = router;

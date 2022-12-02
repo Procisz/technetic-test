@@ -1,5 +1,7 @@
+# Create the database
 CREATE DATABASE technetics;
 
+# Create users table
 CREATE TABLE users (
     created_on timestamp NOT NULL,
     user_id int NOT NULL AUTO_INCREMENT,
@@ -7,22 +9,26 @@ CREATE TABLE users (
     user_name nvarchar(75),
     email nvarchar(255),
     password nvarchar(255),
-    private int,
-    terms_accepted int,
-    intivations int,
+    private boolean,
+    terms_accepted boolean,
     PRIMARY KEY (user_id)
 );
 
-
+# Create invitations table
 CREATE TABLE invitations (
     created_on timestamp NOT NULL,
     inv_id int NOT NULL AUTO_INCREMENT,
     invited_by int NOT NULL,
     email nvarchar(255),
-    invitation_accepted int,
+    invitation_accepted boolean,
     PRIMARY KEY (inv_id),
     FOREIGN KEY (invited_by) REFERENCES users(user_id)
 );
 
+# Create a test data in users table
 INSERT INTO users (created_on, birthday, user_name, email, password)
-VALUES (CURRENT_TIMESTAMP(), "1992-07-03", "procisz", "agostonzajkas@gmail.com", "12345678");
+VALUES (CURRENT_TIMESTAMP(), "1982-02-12", "test-user-name", "test@elek.com", "non-hashed password");
+
+# Create a test data in invitations table
+INSERT INTO invitations (created_on, invited_by, email, invitation_accepted)
+VALUES (CURRENT_TIMESTAMP(), 1, "test2@elek2.com", true);
