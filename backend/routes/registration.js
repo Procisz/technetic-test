@@ -5,12 +5,11 @@ const pool = require('./../mariadb/mariadb-connection');
 /* GET users listing. */
 router.get("/", async (req, res) => {
   const connection = await pool.getConnection();
-  const query = `SELECT * FROM users`
-
+  const query = `
+  SELECT created_on, user_id, birthday, user_name, email, private, terms_accepted
+  FROM users;`
   const result = await connection.query(query);
-  const json = JSON.stringify(result)
-
-  res.send(result);
+  res.status(200).send(result);
 });
 
 module.exports = router;

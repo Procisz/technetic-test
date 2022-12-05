@@ -5,6 +5,7 @@ const pool = mariadb.createPool({
     host: process.env.HOST,
     user: process.env.DB_USER,
     password: process.env.PASSWORD,
+    connectionLimit: 100
 });
 
 module.exports = pool;

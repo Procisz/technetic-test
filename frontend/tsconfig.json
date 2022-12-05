@@ -19,13 +19,14 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"]
+    "lib": ["ES2022", "dom"],
+    "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {
-    "noPropertyAccessFromIndexSignature": false,
-    "enableI18nLegacyMessageIdFormat": false,
+    "fullTemplateTypeCheck": false,
     "strictInjectionParameters": true,
+    "enableI18nLegacyMessageIdFormat": false,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": false
   }
 }
