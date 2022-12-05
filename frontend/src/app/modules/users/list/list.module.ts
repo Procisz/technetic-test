@@ -14,9 +14,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   imports: [
     CommonModule,
     ListRoutingModule,
-    MatIconModule,
     MatExpansionModule,
     MatButtonModule,
+    MatIconModule,
     MatDividerModule,
     MatTooltipModule,
   ],

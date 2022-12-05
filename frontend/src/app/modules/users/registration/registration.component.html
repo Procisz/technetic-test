@@ -1,1 +1,17 @@
-<p>registration works!</p>
+<main class="flex flex-col gap-6 p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 w-50-vw">
+    <form [formGroup]="form">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Username -->
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput required formControlName="userName" />
+                <mat-hint>Max. 75 characters</mat-hint>
+
+                <mat-error *ngIf="form.controls.userName.hasError('required')">
+                    Username is rerquired.
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</main>
