@@ -15,7 +15,7 @@ router.post("/", async (req, res) => {
   const connection = await pool.getConnection();
   const invitations = req.fields.invitations;
 
-  let queryValues = ``
+  let queryValues = ``;
 
   JSON.parse(invitations).forEach((invitation, index) => {
     queryValues += `(CURRENT_TIMESTAMP(), ${invitation.invited_by}, "${invitation.email}", false)`;

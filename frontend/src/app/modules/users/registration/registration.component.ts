@@ -203,8 +203,6 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   }
 
   public createUser(): void {
-    this.createInvitations(1);
-    return;
     const formData: FormData = this.processingFormForUserCreation();
 
     this.userService
@@ -268,16 +266,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsub))
       .subscribe({
         next: () => {
-          this.isFormDisabled = false;
-          this.form.reset();
-          this.form.markAsPristine();
-          this.form.markAsUntouched();
-          this.form.updateValueAndValidity();
-          this.changeDetectorRef.detectChanges();
+          // TODO: Success response handling
         },
         error: () => {
-          this.isFormDisabled = false;
-          this.changeDetectorRef.detectChanges();
           // TODO: Error handling
         },
       });
