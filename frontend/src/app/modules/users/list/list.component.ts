@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { MatAccordion } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
+import { Classes } from 'src/app/enums/classes.enum';
 import { User } from 'src/app/models/data/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 export class ListComponent {
   @ViewChild(MatAccordion) public accordion: MatAccordion;
   public users$: Observable<User[]> = this.userService.getUsers();
+  public containerClasses: string = Classes.CONTAINER_CLASSES;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 }

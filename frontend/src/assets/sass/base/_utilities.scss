@@ -1,3 +1,19 @@
-.w-50-vw {
-  width: 50vw;
+@import "./mixins";
+
+.container-sizer {
+  @include Responsive(xs) {
+    width: 100vw;
+  }
+
+  @include Responsive(md) {
+    width: 70vw;
+  }
+
+  @include Responsive(lg) {
+    width: 60vw;
+  }
+
+  @include Responsive(xl) {
+    width: 50vw;
+  }
 }

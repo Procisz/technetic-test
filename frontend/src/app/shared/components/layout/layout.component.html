@@ -1,3 +1,9 @@
+<nav class="flex w-full items-center justify-center bg-zinc-300 gap-6 p-2">
+    <button [routerLink]="['users', 'registration']" [color]="'primary'" mat-flat-button>Registration</button>
+    <button [routerLink]="['users', 'list']" [color]="'primary'" mat-flat-button>List Users</button>
+    <button [routerLink]="['invitations']" [color]="'primary'" mat-flat-button>List Invitations</button>
+</nav>
+
 <div class="flex justify-center items-center w-screen">
     <router-outlet></router-outlet>
 </div>

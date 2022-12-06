@@ -2,13 +2,16 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const formidable = require('express-formidable');
 const logger = require('morgan');
 const dotenv = require("dotenv")
 dotenv.config();
 
+
 const indexRouter = require('./routes/index');
-const registrationRouter = require('./routes/registration');
+const userRouter = require('./routes/user');
 const emailRouter = require('./routes/email');
+const hearingRouter = require('./routes/hearing');
 const invitationsRouter = require('./routes/invitation');
 
 const app = express();
@@ -33,10 +36,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Parser
+app.use(formidable());
+
 app.use('/', indexRouter);
-app.use('/api/registration', registrationRouter);
+app.use('/api/user', userRouter);
 app.use('/api/email', emailRouter);
 app.use('/api/invitation', invitationsRouter);
+app.use('/api/hearing', hearingRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,0 +1,43 @@
+/** ------------------- This is for responsive querys ------------------- 
+ * These querys are the same as the Tailwind CSS breakpoints.
+ * Media querys and names are the same too.
+ * 
+ * Querys zone          For what devices          Name of parameters
+ * 0 - 599px            mobiles                   xs
+ * 600px - 959px        Tablet portrait mode      sm
+ * 960px - 1279px       Tablet landscape mode     md
+ * 1280px - 1440px      Normal desktops           lg
+ * 1440px +             Large desktops            xl
+ *  ------------------------------------------------------------------- */
+
+@mixin Responsive($breakpoint) {
+  @if $breakpoint==xs {
+    @media only screen and (min-width: 0em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==sm {
+    @media only screen and (min-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==md {
+    @media only screen and (min-width: 60em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==lg {
+    @media only screen and (min-width: 80em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==xl {
+    @media only screen and (min-width: 90em) {
+      @content;
+    }
+  }
+}

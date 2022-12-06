@@ -1,15 +1,22 @@
 # Create the database
 CREATE DATABASE technetics;
 
-# Create users table
+# Create referals table
+CREATE TABLE referals (
+    referal_id int NOT NULL AUTO_INCREMENT,
+    heard_from nvarchar(255),
+    PRIMARY KEY (referal_id)
+);
+
 CREATE TABLE users (
     created_on timestamp NOT NULL,
     user_id int NOT NULL AUTO_INCREMENT,
-    birthday date,
+    date_of_birth nvarchar(255),
+    hearing nvarchar(255),
     user_name nvarchar(75),
     email nvarchar(255),
     password nvarchar(255),
-    private boolean,
+    legal_person boolean,
     terms_accepted boolean,
     PRIMARY KEY (user_id)
 );
@@ -18,17 +25,28 @@ CREATE TABLE users (
 CREATE TABLE invitations (
     created_on timestamp NOT NULL,
     inv_id int NOT NULL AUTO_INCREMENT,
-    invited_by int NOT NULL,
+    invited_by int,
     email nvarchar(255),
     invitation_accepted boolean,
     PRIMARY KEY (inv_id),
     FOREIGN KEY (invited_by) REFERENCES users(user_id)
 );
 
-# Create a test data in users table
-INSERT INTO users (created_on, birthday, user_name, email, password)
-VALUES (CURRENT_TIMESTAMP(), "1982-02-12", "test-user-name", "test@test.com", "non-hashed password");
 
-# Create a test data in invitations table
+
+# Create referals data into referals table
+INSERT INTO referals (heard_from)
+VALUES
+    ("Newspaper"),
+    ("Internet"),
+    ("Friend"),
+    ("Television"),
+    ("Radio");
+
+# Create a test data into users table
+INSERT INTO users (created_on, date_of_birth, user_name, email, hearing, password, legal_person, terms_accepted)
+VALUES (CURRENT_TIMESTAMP(), "1982-02-12", "test-user-name", "test@test.com", "[1, 2, 3]", "non-hashed password", false, true);
+
+# Create a test data into invitations table
 INSERT INTO invitations (created_on, invited_by, email, invitation_accepted)
 VALUES (CURRENT_TIMESTAMP(), 1, "test2@test2.com", true);

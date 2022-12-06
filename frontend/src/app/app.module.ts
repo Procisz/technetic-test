@@ -4,15 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ExtraOptions, PreloadAllModules } from '@angular/router';
 import { LayoutComponent } from './shared/components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
-
-const routerConfig: ExtraOptions = {
-  scrollPositionRestoration: 'enabled',
-  enableTracing: false,
-  preloadingStrategy: PreloadAllModules,
-};
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent],
@@ -21,6 +15,7 @@ const routerConfig: ExtraOptions = {
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

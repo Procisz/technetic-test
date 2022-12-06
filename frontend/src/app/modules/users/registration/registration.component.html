@@ -1,8 +1,6 @@
-<main class="flex flex-col gap-6 p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 w-50-vw">
-    <form [formGroup]="form">
-
+<main class="{{containerClasses}}">
+    <form [formGroup]="form" class="flex flex-col gap-2">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <!-- Username -->
             <mat-form-field>
                 <mat-label>Username</mat-label>
                 <input matInput required formControlName="userName" />
@@ -12,6 +10,130 @@
                     Username is rerquired.
                 </mat-error>
             </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input type="email" matInput required formControlName="email" />
+
+                <mat-hint
+                    *ngIf="!(form.controls.email.hasError('required') || form.controls.email.hasError('pattern') || form.controls.email.hasError('emailNotAvailable')) && !isEmailCheckInProgress"
+                    class="flex items-center gap-1 text-green-700">
+                    <mat-icon class="">check</mat-icon>
+                    <span>The email is available.</span>
+                </mat-hint>
+
+                <mat-error *ngIf="form.controls.email.hasError('required')">
+                    Email is rerquired.
+                </mat-error>
+                <mat-error *ngIf="form.controls.email.hasError('pattern')">
+                    The email format is invalid.
+                </mat-error>
+                <mat-error *ngIf="form.controls.email.hasError('emailNotAvailable')" class="text-red-500">
+                    The email is not available.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input [type]="arePasswordsVisible ? 'text' : 'password'" matInput required formControlName="password" />
+
+                <button [matTooltip]="arePasswordsVisible ? 'Hide password' : 'Show password'" mat-icon-button matSuffix
+                    (click)="$event.stopPropagation(); togglePasswordVisibility();">
+                    <mat-icon> {{arePasswordsVisible ? 'visibility_off' : 'visibility'}} </mat-icon>
+                </button>
+
+                <mat-error *ngIf="form.controls.password.hasError('required')">
+                    Password is rerquired.
+                </mat-error>
+                <mat-error *ngIf="form.controls.password.hasError('passwordsNotMatching')">
+                    The entered passwords do not match.
+                </mat-error>
+                <mat-error *ngIf="form.controls.password.hasError('pattern')">
+                    The password must be at least 8 characters long, and include at least one lowercase and uppercase letter, a number, and
+                    a
+                    special character.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password confirmation</mat-label>
+                <input [type]="arePasswordsVisible ? 'text' : 'password'" matInput required formControlName="passwordConfirmation" />
+
+                <button [matTooltip]="arePasswordsVisible ? 'Hide password' : 'Show password'" mat-icon-button matSuffix
+                    (click)="$event.stopPropagation(); togglePasswordVisibility();">
+                    <mat-icon> {{arePasswordsVisible ? 'visibility_off' : 'visibility'}} </mat-icon>
+                </button>
+
+                <mat-error *ngIf="form.controls.passwordConfirmation.hasError('required')">
+                    Password confirmation is rerquired.
+                </mat-error>
+                <mat-error *ngIf="form.controls.passwordConfirmation.hasError('passwordsNotMatching')">
+                    The entered passwords do not match.
+                </mat-error>
+                <mat-error *ngIf="form.controls.passwordConfirmation.hasError('pattern')">
+                    The password must be at least 8 characters long, and include at least one lowercase and uppercase letter, a number, and
+                    a
+                    special character.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Date of birth</mat-label>
+                <input matInput [matDatepicker]="picker" [min]="minDate" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Where did you hear about us?</mat-label>
+                <mat-select formControlName="hearing" multiple>
+                    <mat-option *ngFor="let option of hearingOptions$ | async" [value]="option.referal_id">
+                        {{option.heard_from}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+
+        <div class="flex items-center gap-6">
+            <mat-slide-toggle [color]="'primary'" formControlName="legalPerson" #terms></mat-slide-toggle>
+            <span class="cursor-pointer" (click)="terms.toggle()">I am a Legal </span>
+        </div>
+
+        <mat-checkbox [color]="'primary'" formControlName="termsAccepted">
+            I accept the Terms and Conditions and agreed about everything. :)
+        </mat-checkbox>
+
+        <mat-divider></mat-divider>
+
+        <div class="mt-6">
+            <h2>You can invite your friend, here. This is optional.</h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 w-full">
+            <div @fadeInOutAnimation *ngFor="
+                let control of invitationsFormArray.controls;
+                let index = index;
+                trackBy: trackBy
+              " formArrayName="invitations">
+                <div class="flex items-center gap-1 w-full" formGroupName="{{ index }}">
+                    <mat-form-field class="flex w-full">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" />
+                    </mat-form-field>
+
+                    <button mat-icon-button class="mb-4" matTooltip="Delete this email" (click)="removeFormGroup(index)">
+                        <mat-icon class="text-red-600">delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="w-fit" (click)="addFormGroup()" mat-raised-button color="primary">
+            <mat-icon>add</mat-icon>
+            <span>Add a new email</span>
+        </button>
+
+        <button class="mt-10" color="primary" [disabled]="form.invalid || isFormDisabled" mat-raised-button
+            (click)="onSubmit()">Registration</button>
     </form>
 </main>
