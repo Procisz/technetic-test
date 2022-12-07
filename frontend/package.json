@@ -2,7 +2,7 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
-  "description": "Technetics",
+  "description": "Technetic",
   "author": "Agoston ZAJKAS",
   "engines": {
     "node": ">=16.13.2"
