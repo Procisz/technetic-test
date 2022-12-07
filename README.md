@@ -7,7 +7,7 @@ Welcome to Technetic test application.
 ### Info
 
 - I used Express with NodeJS in BE
-- Database is mariaDB, but the serves is my local computer
+- Database is mariaDB, the server is my local computer
 - You can create and use the exact same database structure with cmd, using the `database.txt` file in the `database` folder
 
 ### Start
