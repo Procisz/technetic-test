@@ -79,7 +79,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
       Validators.required,
       Validators.pattern(passwordPattern),
     ]),
-    legalPerson: new FormControl<boolean>(false),
+    legalPerson: new FormControl<boolean>(false, Validators.required),
     termsAccepted: new FormControl<boolean>(false, Validators.requiredTrue),
     invitations: new FormArray<any>([]),
   });

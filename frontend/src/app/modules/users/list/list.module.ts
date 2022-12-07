@@ -8,6 +8,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   declarations: [ListComponent],
@@ -19,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatDividerModule,
     MatTooltipModule,
+    PipesModule,
   ],
 })
 export class ListModule {}

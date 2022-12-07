@@ -94,13 +94,14 @@
             </mat-form-field>
         </div>
 
-        <div class="flex items-center gap-6">
-            <mat-slide-toggle [color]="'primary'" formControlName="legalPerson" #terms></mat-slide-toggle>
-            <span class="cursor-pointer" (click)="terms.toggle()">I am a Legal </span>
-        </div>
+        <mat-radio-group formControlName="legalPerson" class="flex flex-col">
+            <mat-radio-button [color]="'primary'" value="false">I am a natural person.</mat-radio-button>
+            <mat-radio-button [color]="'primary'" value="true">I am a legal person.</mat-radio-button>
+        </mat-radio-group>
 
         <mat-checkbox [color]="'primary'" formControlName="termsAccepted">
-            I accept the Terms and Conditions and agreed about everything. :)
+            <span>I accept the Terms and Conditions and agreed about everything.</span>
+            <span class="text-red-500">*</span>
         </mat-checkbox>
 
         <mat-divider></mat-divider>

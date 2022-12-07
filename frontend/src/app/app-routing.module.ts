@@ -17,13 +17,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/users/users.module').then((m) => m.UsersModule),
       },
-      {
-        path: 'invitations',
-        loadChildren: () =>
-          import('./modules/invitations/invitations.module').then(
-            (m) => m.InvitationsModule
-          ),
-      },
     ],
   },
   { path: '**', redirectTo: 'users' },

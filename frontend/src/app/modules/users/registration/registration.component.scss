@@ -3,10 +3,21 @@
     font-size: 1.2rem;
   }
 
-  .mat-mdc-checkbox .mdc-form-field {
+  .mat-mdc-checkbox .mdc-form-field,
+  .mat-mdc-radio-button .mdc-form-field {
     color: black;
   }
 
+  .mat-mdc-radio-button
+    .mdc-radio
+    .mdc-radio__native-control:enabled:not(:checked)
+    + .mdc-radio__background
+    .mdc-radio__outer-circle,
+  .mat-mdc-radio-button
+    .mdc-radio:hover
+    .mdc-radio__native-control:enabled:not(:checked)
+    + .mdc-radio__background
+    .mdc-radio__outer-circle,
   .mat-mdc-checkbox
     .mdc-checkbox
     .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
